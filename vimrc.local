@@ -1,0 +1,28 @@
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set backspace=indent,eol,start
+set wrapscan
+set showmatch
+set wildmenu
+set formatoptions+=mM
+
+set title
+set number
+set ruler
+set nolist
+set wrap
+set laststatus=2
+set cmdheight=2
+set showcmd
+set showmode
+set title
+set nobackup
+set noswapfile
