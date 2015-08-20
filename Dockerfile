@@ -29,20 +29,20 @@ RUN cp /galaxy/vimrc.local /etc/vim/vimrc.local
 RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' > /etc/apt/sources.list.d/r.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get -y update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y r-base libcurl4-openssl-dev libxml2-dev libxt-dev libgtk2.0-dev libcairo2-dev xvfb xauth xfonts-base mesa-common-dev
+    DEBIAN_FRONTEND=noninteractive apt-get install -y r-base libcurl4-openssl-dev libxml2-dev libxt-dev libgtk2.0-dev libcairo2-dev xvfb xauth xfonts-base mesa-common-dev libx11-dev freeglut3-dev
 ADD ./install_rnaseqENV.R /galaxy/install_rnaseqENV.R
 ADD ./install_destiny.R /galaxy/install_destiny.R
 RUN R -e 'source("/galaxy/install_rnaseqENV.R")'
 RUN R -e 'source("/galaxy/install_destiny.R")'
 
 # Setting Python
-RUN pip install python-dateutil && \
+RUN apt-get -y install python-pip && \
+    pip install python-dateutil && \
     pip install bioblend && \
     pip install pandas && \
     pip install grequests && \
     pip install GitPython && \
-    pip install pip-tools && \
-    pip-review
+    pip install pip-tools
 
 # Install ToolShed-tools
 WORKDIR /galaxy-central
