@@ -1,0 +1,6 @@
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+packageVersion("BiocInstaller")
+library(BiocInstaller)
+useDevel()
+biocLite("destiny")
