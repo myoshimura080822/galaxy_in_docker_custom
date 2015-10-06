@@ -11,7 +11,11 @@ VOLUME ["/export/", "/data/", "/var/lib/docker"]
 RUN \
     apt-get -y update && \
     apt-get -y install tree && \
-    apt-get -y install zsh
+    apt-get -y install zsh && \
+    apt-get -y install imagemagick && \
+    apt-get -y install pandoc && \
+    apt-get -y install libcurl4-gnutls-dev && \
+    apt-get -y install libglu1-mesa-dev freeglut3-dev mesa-common-dev
 
 # Install OH-MY-ZSH
 RUN cd /usr/local/src   && \
@@ -53,7 +57,25 @@ RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name 
     "--url https://toolshed.g2.bx.psu.edu/ -o jjohnson --name fastq_mcf -r b61f1466ce8f --panel-section-name NGS-QCtools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc -r 0b201de108b9 --panel-section-name NGS-QCtools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name toolfactory --panel-section-name Create-tools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name tool_factory_2 --panel-section-name Create-tools"
+    "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name tool_factory_2 --panel-section-name Create-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name samtools_flagstat -r 0072bf593791 --panel-section-name NGS-QCtools"
+
+# Clone Bug-fixed ToolFactory
+WORKDIR /galaxy
+RUN git clone https://github.com/myoshimura080822/galaxy-mytools_ToolFactory.git && \
+    mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory_BK.py && \
+    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/ && \
+    mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory_BK.xml && \
+    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/
+
+# Install Sailfish
+WORKDIR /galaxy
+RUN wget https://github.com/kingsfordgroup/sailfish/releases/download/v0.6.3/Sailfish-0.6.3-Linux_x86-64.tar.gz && \
+    tar -zxvf Sailfish-0.6.3-Linux_x86-64.tar.gz && \
+    rm Sailfish-0.6.3-Linux_x86-64.tar.gz && \
+    mv /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1 /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1_bk
+ENV PATH $PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/bin
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/lib
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]

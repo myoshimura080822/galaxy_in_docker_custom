@@ -73,4 +73,11 @@ if (!is.installed("scde")){
     install.packages("scde_1.2.1.tar.gz", repos=NULL, type="source")
 }
 
+# for destiny
+install.packages('gridExtra', repos="http://cran.rstudio.com/")
+install.packages('plotrix', repos="http://cran.rstudio.com/")
+install.packages('spatgraphs', repos="http://cran.rstudio.com/")
+
+
+
 remove.packages("BiocInstaller")
