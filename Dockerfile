@@ -10,12 +10,9 @@ VOLUME ["/export/", "/data/", "/var/lib/docker"]
 # Install OS tools we'll need
 RUN \
     apt-get -y update && \
-    apt-get -y install tree && \
-    apt-get -y install zsh && \
-    apt-get -y install imagemagick && \
-    apt-get -y install pandoc && \
-    apt-get -y install libcurl4-gnutls-dev && \
-    apt-get -y install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+    apt-get -y upgrade && \
+    apt-get -y install tree zsh imagemagick pandoc && \
+    apt-get -y install libcurl4-gnutls-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev
 
 # Install OH-MY-ZSH
 RUN cd /usr/local/src   && \
@@ -29,24 +26,26 @@ RUN cd /usr/local/src   && \
 ADD ./vimrc.local /galaxy/vimrc.local
 RUN cp /galaxy/vimrc.local /etc/vim/vimrc.local
 
-# Install R 
-RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' > /etc/apt/sources.list.d/r.list && \
+# Install R and require Pkg 
+ENV R_BASE_VERSION 3.2.2
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository 'deb http://cran.us.r-project.org/bin/linux/ubuntu trusty/' && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-    apt-get -y update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y r-base libcurl4-openssl-dev libxml2-dev libxt-dev libgtk2.0-dev libcairo2-dev xvfb xauth xfonts-base mesa-common-dev libx11-dev freeglut3-dev
+    apt-get update && \
+    apt-get install -y --force-yes r-base=${R_BASE_VERSION}* r-base-dev=${R_BASE_VERSION}* r-recommended=${R_BASE_VERSION}* && \
+    apt-get install -y --force-yes libcurl4-openssl-dev libxml2-dev libxt-dev libgtk2.0-dev libcairo2-dev xvfb xauth xfonts-base mesa-common-dev libx11-dev freeglut3-dev
 ADD ./install_rnaseqENV.R /galaxy/install_rnaseqENV.R
-ADD ./install_destiny.R /galaxy/install_destiny.R
 RUN R -e 'source("/galaxy/install_rnaseqENV.R")'
-RUN R -e 'source("/galaxy/install_destiny.R")'
 
 # Setting Python
-RUN apt-get -y install python-pip && \
-    pip install python-dateutil && \
-    pip install bioblend && \
-    pip install pandas && \
-    pip install grequests && \
-    pip install GitPython && \
-    pip install pip-tools
+RUN python -m pip install --upgrade --force-reinstall pip && \
+    sudo pip install -U pip && \
+    sudo pip install python-dateutil && \
+    sudo pip install bioblend && \
+    sudo pip install pandas && \
+    sudo pip install grequests && \
+    sudo pip install GitPython && \
+    sudo pip install pip-tools
 
 # Install ToolShed-tools
 WORKDIR /galaxy-central

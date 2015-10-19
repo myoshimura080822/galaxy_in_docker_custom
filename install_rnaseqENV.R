@@ -77,7 +77,6 @@ if (!is.installed("scde")){
 install.packages('gridExtra', repos="http://cran.rstudio.com/")
 install.packages('plotrix', repos="http://cran.rstudio.com/")
 install.packages('spatgraphs', repos="http://cran.rstudio.com/")
+biocLite("destiny")
 
-
-
-remove.packages("BiocInstaller")
+#remove.packages("BiocInstaller")
