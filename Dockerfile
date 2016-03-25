@@ -26,7 +26,7 @@ RUN cd /usr/local/src   && \
 ADD ./vimrc.local /galaxy/vimrc.local
 RUN cp /galaxy/vimrc.local /etc/vim/vimrc.local
 
-# Install R and require Pkg 
+# Install R 
 ENV R_BASE_VERSION 3.2.2
 RUN apt-get install -y software-properties-common && \
     add-apt-repository 'deb http://cran.us.r-project.org/bin/linux/ubuntu trusty/' && \
@@ -35,7 +35,6 @@ RUN apt-get install -y software-properties-common && \
     apt-get install -y --force-yes r-base=${R_BASE_VERSION}* r-base-dev=${R_BASE_VERSION}* r-recommended=${R_BASE_VERSION}* && \
     apt-get install -y --force-yes libcurl4-openssl-dev libxml2-dev libxt-dev libgtk2.0-dev libcairo2-dev xvfb xauth xfonts-base mesa-common-dev libx11-dev freeglut3-dev
 ADD ./install_rnaseqENV.R /galaxy/install_rnaseqENV.R
-RUN R -e 'source("/galaxy/install_rnaseqENV.R")'
 
 # Setting Python
 RUN python -m pip install --upgrade --force-reinstall pip && \
@@ -57,7 +56,11 @@ RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name 
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc -r 0b201de108b9 --panel-section-name NGS-QCtools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name toolfactory --panel-section-name Create-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name tool_factory_2 --panel-section-name Create-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cufflinks -r a1ea9af8d5f4 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name samtools_flagstat -r 0072bf593791 --panel-section-name NGS-QCtools"
+
+# install R pkg
+RUN R -e 'source("/galaxy/install_rnaseqENV.R")'
 
 # Clone Bug-fixed ToolFactory
 WORKDIR /galaxy
