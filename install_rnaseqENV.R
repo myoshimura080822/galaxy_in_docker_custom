@@ -48,6 +48,10 @@ if (!is.installed("rgl")){
     install.packages('rgl', repos="http://cran.rstudio.com/")
 }
 
+if (!is.installed("rglwidget")){
+    install.packages('rglwidget', repos="http://cran.rstudio.com/")
+}
+
 source("http://bioconductor.org/biocLite.R")
 biocLite()
 
