@@ -73,8 +73,14 @@ RUN wget https://github.com/kingsfordgroup/sailfish/releases/download/v0.6.3/Sai
     tar -zxvf Sailfish-0.6.3-Linux_x86-64.tar.gz && \
     rm Sailfish-0.6.3-Linux_x86-64.tar.gz && \
     mv /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1 /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1_bk
-ENV PATH $PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/bin
+#ENV PATH $PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/bin
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/lib
+
+WORKDIR /galaxy
+RUN wget https://github.com/kingsfordgroup/sailfish/releases/download/v0.9.2/SailfishBeta-0.9.2_CentOS5.tar.gz && \
+    tar -zxvf SailfishBeta-0.9.2_CentOS5.tar.gz && \
+    rm SailfishBeta-0.9.2_CentOS5.tar.gz
+ENV PATH $PATH:/galaxy/SailfishBeta-0.9.2_CentOS5/bin
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]

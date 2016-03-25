@@ -80,3 +80,9 @@ install.packages('spatgraphs', repos="http://cran.rstudio.com/")
 biocLite("destiny")
 
 #remove.packages("BiocInstaller")
+
+if (!is.installed("jsonlite")){
+    install.packages('jsonlite', repos="http://cran.rstudio.com/")
+}
+
+
