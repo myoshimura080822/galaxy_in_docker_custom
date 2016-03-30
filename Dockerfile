@@ -50,11 +50,11 @@ RUN \
 # Install Sailfish
     bash -c "tar zxf <(curl -L https://github.com/kingsfordgroup/sailfish/releases/download/v0.6.3/Sailfish-0.6.3-Linux_x86-64.tar.gz) -C /galaxy" && \
     mv /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1 /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1_bk && \
-    tar -zxf /galaxy/SailfishBeta-0.9.2_trusty.tar.gz -C /galaxy/
+    tar -zxf /galaxy/SailfishBeta-0.9.2_trusty.tar.gz -C /galaxy/ && \
 
 # Install ToolShed-tools
-WORKDIR /galaxy-central
-RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name tophat2 -r da1f39fe14bc --panel-section-name NGS-tools" \
+    (cd /galaxy-central &&\
+    install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name tophat2 -r da1f39fe14bc --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name express -r 7b0708761d05 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fcaramia --name edger -r 6324eefd9e91 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 -r c1ec08cb34f9 --panel-section-name NGS-tools" \
@@ -69,7 +69,7 @@ RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name 
     mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py_bk && \
     mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.xml_bk && \ 
     cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/ && \
-    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/
+    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/)
 
 # Define default command
 CMD ["/usr/bin/startup"]
