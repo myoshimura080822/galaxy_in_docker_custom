@@ -54,16 +54,23 @@ RUN \
 
 # Install ToolShed-tools
     (cd /galaxy-central &&\
-    install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name tophat2 -r da1f39fe14bc --panel-section-name NGS-tools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name express -r 7b0708761d05 --panel-section-name NGS-tools" \
+    install-repository \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 -r a9d4f71dbfb0 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffcompare -r b77178f66fc3 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffdiff -r 0f32ad418df8 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cufflinks -r a1ea9af8d5f4 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffquant -r 986b63735a5e --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fcaramia --name edger -r 6324eefd9e91 --panel-section-name NGS-tools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 -r c1ec08cb34f9 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name express -r 7b0708761d05 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o jjohnson --name fastq_mcf -r b61f1466ce8f --panel-section-name NGS-QCtools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc -r 0b201de108b9 --panel-section-name NGS-QCtools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc -r 28d39af2dd06 --panel-section-name NGS-QCtools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name gffread -r 48fe74f391ab --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o iuc --name hisat2 -r b1e25f9b5eab --panel-section-name NGS-QCtools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name sam_merge -r 1977f1637890 --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name samtools_flagstat -r 0072bf593791 --panel-section-name NGS-QCtools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name toolfactory --panel-section-name Create-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fubar --name tool_factory_2 --panel-section-name Create-tools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cufflinks -r a1ea9af8d5f4 --panel-section-name NGS-tools" \
-    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name samtools_flagstat -r 0072bf593791 --panel-section-name NGS-QCtools" && \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name tophat2 -r 4eb3c3beb9c7 --panel-section-name NGS-tools" && \ 
 # Clone Bug-fixed ToolFactory
     git clone https://github.com/myoshimura080822/galaxy-mytools_ToolFactory.git /galaxy/galaxy-mytools_ToolFactory/ && \
     mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py_bk && \
