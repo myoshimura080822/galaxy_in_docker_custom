@@ -60,6 +60,7 @@ RUN \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffdiff -r 0f32ad418df8 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cufflinks -r a1ea9af8d5f4 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffquant -r 986b63735a5e --panel-section-name NGS-tools" \
+    "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name cuffnorm -r 7d4c2097aac5 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o fcaramia --name edger -r 6324eefd9e91 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name express -r 7b0708761d05 --panel-section-name NGS-tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o jjohnson --name fastq_mcf -r b61f1466ce8f --panel-section-name NGS-QCtools" \
