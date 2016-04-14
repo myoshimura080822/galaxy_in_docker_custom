@@ -8,12 +8,12 @@ MAINTAINER Mika Yoshimura <myoshimura080822@gmail.com>
 ENV R_BASE_VERSION=3.2.2 \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/lib \
     #PATH=$PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/bin \
-    PATH=$PATH:/galaxy/SailfishBeta-0.9.2_trusty/bin
+    PATH=$PATH:/galaxy/sailfish-0.9.2_trusty/bin
 
 # Include all needed scripts from the host
 ADD vimrc.local /galaxy/
 ADD install_rnaseqENV.R /galaxy/
-COPY SailfishBeta-0.9.2_trusty.tar.gz /galaxy/
+COPY sailfish-0.9.2_trusty.tar.gz /galaxy/
 
 # Install OS tools we'll need
 RUN \
@@ -50,7 +50,7 @@ RUN \
 # Install Sailfish
     bash -c "tar zxf <(curl -L https://github.com/kingsfordgroup/sailfish/releases/download/v0.6.3/Sailfish-0.6.3-Linux_x86-64.tar.gz) -C /galaxy" && \
     mv /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1 /galaxy/Sailfish-0.6.3-Linux_x86-64/lib/libz.so.1_bk && \
-    tar -zxf /galaxy/SailfishBeta-0.9.2_trusty.tar.gz -C /galaxy/ && \
+    tar -zxf /galaxy/sailfish-0.9.2_trusty.tar.gz -C /galaxy/ && \
 
 # Install ToolShed-tools
     (cd /galaxy-central &&\
