@@ -6,9 +6,9 @@ MAINTAINER Mika Yoshimura <myoshimura080822@gmail.com>
 
 # Set environment variables
 ENV R_BASE_VERSION=3.2.2 \
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/lib \
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/lib
     #PATH=$PATH:/galaxy/Sailfish-0.6.3-Linux_x86-64/bin \
-    PATH=$PATH:/galaxy/sailfish-0.9.2_trusty/bin
+    #PATH=$PATH:/galaxy/sailfish-0.9.2_trusty/bin
 
 # Include all needed scripts from the host
 ADD vimrc.local /galaxy/
@@ -78,7 +78,11 @@ RUN \
     mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.py_bk && \
     mv /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/rgToolFactory.xml_bk && \ 
     cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.py /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/ && \
-    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/)
+    cp /galaxy/galaxy-mytools_ToolFactory/rgToolFactory.xml /shed_tools/toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/e9ebb410930d/toolfactory/) && \
+# Download wigToBigwig
+    cd /galaxy && \ 
+    wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig
+RUN chmod 755 /galaxy/wigToBigWig
 
 # Define default command
 CMD ["/usr/bin/startup"]
