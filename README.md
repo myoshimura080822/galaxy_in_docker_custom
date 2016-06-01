@@ -6,7 +6,7 @@ in the bgruening/docker-galaxy-stable images from Björn A. Grüning.
 https://github.com/bgruening/docker-galaxy-stable
 
 # History(Tag)
-- myoshimura080822/galaxy_in_docker_base:0520
+- myoshimura080822/galaxy_in_docker_base:160520
   - replace sailfish-0.9.2 binary
     - from SailfishBeta-0.9.2 to Sailfish-0.9.2
   - remove sailfish from PATH
@@ -14,7 +14,7 @@ https://github.com/bgruening/docker-galaxy-stable
     - http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig
   - add toolshed-tools below
     - cuffnorm 
-- myoshimura080822/galaxy_in_docker_base:0408
+- myoshimura080822/galaxy_in_docker_base:160408
   - add toolshed-tools below
     - bowtie2          
     - cuffcompare      
@@ -29,7 +29,7 @@ https://github.com/bgruening/docker-galaxy-stable
     - samtools_flagstat
     - tophat2 
     - rseqc
-- myoshimura080822/galaxy_in_docker_base:0404
+- myoshimura080822/galaxy_in_docker_base:160404
   - add SailfishBeta-0.9.2
 
 # Installation
